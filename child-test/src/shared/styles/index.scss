@@ -1,0 +1,13 @@
+@import "./colors.scss";
+@import "./text.scss";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "CirceRoundedRegular";
+  font-weight: 400;
+  font-size: 2vmin;
+}
