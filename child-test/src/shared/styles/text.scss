@@ -3,3 +3,14 @@
   src: url("../fonts/CirceRounded-Regular.otf") format("opentype");
   font-weight: normal;
 }
+
+@font-face {
+  font-family: "CirceRoundedThin";
+  src: url("../fonts/CirceRounded-Thin.otf") format("opentype");
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 32px;
+  font-family: CirceRoundedThin;
+}

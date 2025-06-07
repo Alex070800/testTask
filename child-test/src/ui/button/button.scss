@@ -1,0 +1,23 @@
+.button {
+  border-radius: 100px;
+  border: none;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 13px;
+  padding: 9px 24px;
+  color: var(--white);
+  font-size: 16px;
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &_color {
+    &_blue {
+      background-color: var(--blue);
+    }
+  }
+}
