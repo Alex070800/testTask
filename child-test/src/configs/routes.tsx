@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { links } from "./links";
 import { TestPage } from "../pages/test-page/test-page";
 import { ImagesPage } from "../pages/images-page/images-page";
+import { QuestionsPage } from "../pages/questions-page/questions-page";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const AppRouter = () => {
         {
           path: "",
           element: <ImagesPage />,
+        },
+        {
+          path: "questions",
+          element: <QuestionsPage />,
         },
       ],
     },

@@ -1,5 +1,5 @@
 import { bemCN } from "../../configs/bem-classname";
-import { Button, ButtonColors, ButtonSizes } from "../../ui/button/button";
+import { Button, ButtonColors, ButtonIconPosition, ButtonSizes } from "../../ui/button/button";
 import { ReactComponent as ArrowLeftIcon } from "../../shared/images/svg/arrow-left.svg";
 import "./hello-page.scss";
 import { BackgroundDots } from "../../ui/background-dots/background-dots";
@@ -24,6 +24,7 @@ export const HelloPage = () => {
         text="Начать"
         icon={<ArrowLeftIcon />}
         onClick={onClickBtn}
+        iconPosition={ButtonIconPosition.right}
       />
     </div>
   );

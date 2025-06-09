@@ -1,5 +1,5 @@
 import { bemCN } from "../../configs/bem-classname";
-import { Button, ButtonColors, ButtonSizes } from "../../ui/button/button";
+import { Button, ButtonColors, ButtonIconPosition, ButtonSizes } from "../../ui/button/button";
 import { ReactComponent as ArrowLeftIcon } from "../../shared/images/svg/arrow-left.svg";
 
 import {
@@ -9,11 +9,17 @@ import {
 import "./images-page.scss";
 import { ImageInput } from "../../components/image-input/image-input";
 import { Message, MessageColor } from "../../ui/message/message";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { links } from "../../configs/links";
 
 const imagesPageCN = bemCN("images-page");
 
 export const ImagesPage = () => {
+  const navigate = useNavigate();
+
+  const onClickNextBtn = () => {
+    navigate(links.test + links.questions);
+  };
   return (
     <div className={imagesPageCN()}>
       <h2>Загрузите фотографии рисунков</h2>
@@ -38,10 +44,12 @@ export const ImagesPage = () => {
           currentStep={1}
         />
         <Button
+          onClick={onClickNextBtn}
           color={ButtonColors.blue}
           size={ButtonSizes.big}
           text="Дальше"
           icon={<ArrowLeftIcon />}
+          iconPosition={ButtonIconPosition.right}
         />
       </div>
     </div>

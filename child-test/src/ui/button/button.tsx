@@ -13,19 +13,27 @@ export enum ButtonSizes {
   big,
 }
 
+export enum ButtonIconPosition {
+  left,
+  right,
+}
+
 type ButtonProps = {
   id?: string;
   color: ButtonColors;
   size: ButtonSizes;
+  iconPosition?: ButtonIconPosition;
   text?: string;
   icon?: ReactNode;
   isDisable?: boolean;
   onClick?: () => void;
 };
+
 export const Button: FC<ButtonProps> = ({
   id,
   color,
   size,
+  iconPosition,
   text,
   icon,
   isDisable,
@@ -33,6 +41,10 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   let colorClass = ButtonColors[color];
   let sizeClass = ButtonSizes[size];
+  let iconPositionClass =
+    iconPosition != undefined
+      ? ButtonIconPosition[iconPosition]
+      : ButtonIconPosition[ButtonIconPosition.right];
 
   return (
     <button
@@ -41,10 +53,11 @@ export const Button: FC<ButtonProps> = ({
       onClick={() => onClick && onClick()}
       className={buttonCN({
         color: colorClass,
-        size:sizeClass
+        size: sizeClass,
+        iconPosition: iconPositionClass,
       })}
     >
-      {text} {icon}
+      <span>{text} </span> {icon}
     </button>
   );
 };
