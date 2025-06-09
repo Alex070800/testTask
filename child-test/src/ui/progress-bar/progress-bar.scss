@@ -1,0 +1,30 @@
+.progress-bar {
+  &_type {
+    &_line {
+      width: 100%;
+      height: 25px;
+      progress {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: var(--blue);
+      }
+      progress::-webkit-progress-bar {
+        background-color: var(--blue);
+      }
+      progress::-webkit-progress-value {
+        background-color: var(--dark-blue2);
+      }
+      progress::-moz-progress-bar {
+        background-color: var(--dark-blue2);
+      }
+    }
+
+    &_number {
+      > p {
+        color: var(--grey);
+        font-size: 14px;
+      }
+    }
+  }
+}

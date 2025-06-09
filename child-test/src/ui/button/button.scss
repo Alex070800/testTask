@@ -1,23 +1,40 @@
 .button {
-  border-radius: 100px;
   border: none;
-  height: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  align-items: center;
   gap: 13px;
-  padding: 9px 24px;
   color: var(--white);
   font-size: 16px;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
   &_color {
     &_blue {
-      background-color: var(--blue);
+      background-color: var(--dark-blue);
+    }
+
+    &_lightBlue {
+      background-color: var(--light-blue2);
+    }
+  }
+
+  &_size {
+    &_big {
+      height: 40px;
+      padding: 9px 24px;
+      justify-content: start;
+      align-items: center;
+      border-radius: 100px;
+    }
+
+    &_small {
+      width: 64px;
+      height: 64px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
     }
   }
 }

@@ -1,0 +1,22 @@
+.message {
+  border-radius: 100px;
+//   width: 100%;
+  height: auto;
+  padding: 8px 12px;
+  > p {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  &_color {
+    &_red {
+      padding-left: calc(8px + 16px + 12px);
+      background-color: var(--pink);
+      background-image: url("../../shared/images/svg/warning.svg");
+      background-position: 12px center;
+      background-repeat: no-repeat;
+      background-size: 16px;
+      color: var(--red);
+    }
+  }
+}

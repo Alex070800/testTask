@@ -1,16 +1,27 @@
 @font-face {
   font-family: "CirceRoundedRegular";
   src: url("../fonts/CirceRounded-Regular.otf") format("opentype");
-  font-weight: normal;
 }
 
 @font-face {
   font-family: "CirceRoundedThin";
   src: url("../fonts/CirceRounded-Thin.otf") format("opentype");
-  font-weight: normal;
+}
+
+@font-face {
+  font-family: "CirceRoundedBold";
+  src: url("../fonts/CirceRounded-Bold.otf") format("opentype");
 }
 
 h1 {
   font-size: 32px;
-  font-family: CirceRoundedThin;
+  font-family: "CirceRoundedThin";
+  text-align: center;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: "CirceRoundedRegular";
+  text-align: start;
+  font-weight: 700;
 }

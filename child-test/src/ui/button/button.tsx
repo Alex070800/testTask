@@ -8,9 +8,15 @@ export enum ButtonColors {
   lightBlue,
 }
 
+export enum ButtonSizes {
+  small,
+  big,
+}
+
 type ButtonProps = {
   id?: string;
   color: ButtonColors;
+  size: ButtonSizes;
   text?: string;
   icon?: ReactNode;
   isDisable?: boolean;
@@ -19,12 +25,14 @@ type ButtonProps = {
 export const Button: FC<ButtonProps> = ({
   id,
   color,
+  size,
   text,
   icon,
   isDisable,
   onClick,
 }) => {
   let colorClass = ButtonColors[color];
+  let sizeClass = ButtonSizes[size];
 
   return (
     <button
@@ -33,6 +41,7 @@ export const Button: FC<ButtonProps> = ({
       onClick={() => onClick && onClick()}
       className={buttonCN({
         color: colorClass,
+        size:sizeClass
       })}
     >
       {text} {icon}
