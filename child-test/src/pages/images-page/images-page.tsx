@@ -11,6 +11,8 @@ import { ImageInput } from "../../components/image-input/image-input";
 import { Message, MessageColor } from "../../ui/message/message";
 import { useNavigate } from "react-router-dom";
 import { links } from "../../configs/links";
+import { questionsService } from "../../services/questions-service";
+import { QuestionGetDto } from "../../api/models/response-dto/question-get-dto";
 
 const imagesPageCN = bemCN("images-page");
 
@@ -18,7 +20,10 @@ export const ImagesPage = () => {
   const navigate = useNavigate();
 
   const onClickNextBtn = () => {
-    navigate(links.test + links.questions);
+    // navigate(links.test + links.questions);
+  questionsService.getQuestions().then((res: QuestionGetDto[]) =>{
+    console.log(res);
+  })
   };
   return (
     <div className={imagesPageCN()}>
