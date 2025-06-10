@@ -34,18 +34,34 @@ export const Input: FC<InputProps> = ({
   let inputTypeClass = InputType[type];
   switch (type) {
     case InputType.date: {
-      return <input />;
-    }
-    case InputType.text: {
       return (
-        <>
+        <div className={inputCN({ type: inputTypeClass })}>
           {label && (
             <label className={inputCN("label")} htmlFor={id}>
               {label}
             </label>
           )}
           <input
-            className={inputCN({ type: inputTypeClass })}
+            placeholder="01.01.2000"
+            id={id}
+            name={id}
+            required={isRequired}
+            disabled={isDisable}
+            value={value}
+            type="date"
+          />
+        </div>
+      );
+    }
+    case InputType.text: {
+      return (
+        <div className={inputCN({ type: inputTypeClass })}>
+          {label && (
+            <label className={inputCN("label")} htmlFor={id}>
+              {label}
+            </label>
+          )}
+          <input
             value={value}
             onChange={(v: React.ChangeEvent<HTMLInputElement>) => {
               setValue && setValue(v.currentTarget.value);
@@ -55,7 +71,7 @@ export const Input: FC<InputProps> = ({
             required={isRequired}
             disabled={isDisable}
           />
-        </>
+        </div>
       );
     }
     case InputType.textarea: {

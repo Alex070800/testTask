@@ -23,11 +23,13 @@ export const QuestionsPage = () => {
     <div className={questionsPageCN()}>
       <h2>Общая информация о ребенке</h2>
       <div>
-        <Input type={InputType.text} label="Имя ребенка" />
+        <Input value="" type={InputType.text} label="Имя ребенка" />
         <Input
           type={InputType.text}
           label="Имя родителя, заполняющего анкету"
         />
+
+        <Input label="Дата рождения ребенка" type={InputType.date} />
 
         <RadioGroup
           id="gender"

@@ -1,15 +1,23 @@
 .input {
-  border: 1px solid var(--grey);
-  border-radius: 6px;
-  padding: 10px 12px;
-  color: var(--black);
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 5px;
+  width: 100%;
+  > input {
+    border: 1px solid var(--grey);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--black);
+    font-size: 14px;
 
-  &:focus,
-  &:hover,
-  &:not([value=""]) {
-    border: 1px solid var(--violet);
-    outline: none;
+    &:focus,
+    &:hover,
+    &:not([value=""]) {
+      border: 1px solid var(--violet);
+      outline: none;
+    }
   }
 
   &__label {
@@ -19,7 +27,25 @@
 
   &_type {
     &_text {
-      width: 100%;
+      input {
+        width: 100%;
+      }
+    }
+
+    &_date {
+      input {
+        color: var(--light-grey-05);
+
+        -moz-appearance: textfield;
+
+        &::-webkit-calendar-picker-indicator {
+          opacity: 0;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

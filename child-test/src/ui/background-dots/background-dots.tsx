@@ -10,7 +10,7 @@ export const BackgroundDots = () => {
     <div className={backDotsCn()}>
       {[...Array(75)].map((e: any, i: number) => {
         return (
-          <div className={"dotWrapper dotWrapper-" + i}>
+          <div key={i} className={"dotWrapper dotWrapper-" + i}>
             <div className={"dot dot-" + i}></div>
           </div>
         );
