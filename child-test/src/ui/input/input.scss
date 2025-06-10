@@ -1,3 +1,25 @@
-.input{
-    
+.input {
+  border: 1px solid var(--grey);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--black);
+  font-size: 14px;
+
+  &:focus,
+  &:hover,
+  &:not([value=""]) {
+    border: 1px solid var(--violet);
+    outline: none;
+  }
+
+  &__label {
+    color: var(--black);
+    font-size: 16px;
+  }
+
+  &_type {
+    &_text {
+      width: 100%;
+    }
+  }
 }

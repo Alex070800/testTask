@@ -1,0 +1,79 @@
+.radio-group {
+  min-width: 100px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+
+  &__label {
+    color: var(--black);
+    font-size: 16px;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    label {
+      color: var(--black);
+      font-size: 12px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      appearance: none;
+      border-radius: 50%;
+      outline: none;
+      background-color: var(--grey2);
+      cursor: pointer;
+      margin: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        left: 50%;
+        top: 50%;
+        border-radius: 50%;
+        background-color: var(--white);
+        transform: translate(-50%, -50%) !important;
+      }
+
+      &:hover {
+        background-color: var(--dark-blue);
+      }
+
+      &:checked {
+        background-color: var(--dark-blue);
+        &::after {
+          width: 10px;
+          height: 10px;
+          transition: 500ms;
+        }
+
+        &:hover {
+          background-color: var(--dark-blue3);
+        }
+      }
+    }
+  }
+}
