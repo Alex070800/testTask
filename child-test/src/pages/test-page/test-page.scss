@@ -1,5 +1,20 @@
-.test-page{
-    >div:last-child{
-        padding: 32px 20vmin 0 20vmin;
-    }
+.test-page {
+  > div:not(:first-child) {
+    padding: 32px 20vmin 0 20vmin;
+  }
+
+  &__nav-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  &__next{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }

@@ -21,9 +21,9 @@ export class QuestionDto {
 }
 
 export enum TypeQuestion {
-  file,
+  file = 1,
   text,
-  textArea,
+  textarea,
   date,
   multi,
 }

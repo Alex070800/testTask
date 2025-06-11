@@ -3,8 +3,8 @@ import { HelloPage } from "../pages/hello-page/hello-page";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { links } from "./links";
 import { TestPage } from "../pages/test-page/test-page";
-import { ImagesPage } from "../pages/images-page/images-page";
-import { QuestionsPage } from "../pages/questions-page/questions-page";
+import { ResultPage } from "../pages/result-page/result-page";
+
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -15,16 +15,10 @@ const AppRouter = () => {
     {
       path: links.test,
       element: <TestPage />,
-      children: [
-        {
-          path: "",
-          element: <ImagesPage />,
-        },
-        {
-          path: "questions",
-          element: <QuestionsPage />,
-        },
-      ],
+    },
+    {
+      path: links.result,
+      element: <ResultPage />,
     },
     {
       path: "*",

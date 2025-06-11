@@ -1,0 +1,27 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 5px;
+  width: inherit;
+
+  >div{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+
+    >.radio-group{
+        width: 100%;
+    }
+
+    >.image-input{
+        flex-grow: 1;
+    }
+  }
+
+}

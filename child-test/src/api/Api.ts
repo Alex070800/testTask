@@ -1,3 +1,4 @@
+import { SectionDto } from "./models/dto/section-dto";
 import { AnswerPostDto } from "./models/reques-dto/answer-post-dto";
 import { QuestionGetDto } from "./models/response-dto/question-get-dto";
 
@@ -267,6 +268,22 @@ export class Api<
   SecurityDataType extends unknown
 > extends HttpClient<SecurityDataType> {
   api = {
+/**
+     * @description Получение вопросов теста, связанных с загрузкой файлов 
+     *
+     * @tags Question
+     * @request GET:/api/question/images
+     */
+    getQuestionsImages: (params: RequestParams = {}) =>
+      this.request<SectionDto, void>({
+        path: `/api/question/images`,
+        method: "GET",
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+
     /**
      * @description Получение вопросов теста
      *
@@ -274,7 +291,7 @@ export class Api<
      * @request GET:/api/question
      */
     getQuestions: (params: RequestParams = {}) =>
-      this.request<QuestionGetDto[], void>({
+      this.request<QuestionGetDto, void>({
         path: `/api/question`,
         method: "GET",
         type: ContentType.Json,

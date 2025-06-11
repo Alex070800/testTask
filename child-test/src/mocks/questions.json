@@ -540,22 +540,22 @@
         {
           "id": 26,
           "questionText": "Есть ли у Вашего ребенка какие-либо особенности развития или поведения, о которых Вы хотели бы сообщить дополнительно?",
-          "typeQuestion": "textArea"
+          "typeQuestion": "textarea"
         },
         {
           "id": 27,
           "questionText": "Какие, на Ваш взгляд, сильные стороны и таланты есть у Вашего ребенка?",
-          "typeQuestion": "textArea"
+          "typeQuestion": "textarea"
         },
         {
           "id": 28,
           "questionText": "Какие, на Ваш взгляд, области требуют особого внимания и развития у Вашего ребенка?",
-          "typeQuestion": "textArea"
+          "typeQuestion": "textarea"
         },
         {
           "id": 29,
           "questionText": "Обращались ли Вы ранее к специалистам (психологу, неврологу, логопеду) по поводу развития или поведения Вашего ребенка?",
-          "typeQuestion": "textArea"
+          "typeQuestion": "textarea"
         }
       ]
     }

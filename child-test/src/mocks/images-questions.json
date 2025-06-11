@@ -1,0 +1,20 @@
+{
+  "name": "Загрузите фотографии рисунков",
+  "questions": [
+    {
+      "id": 1,
+      "questionText": "Дом, дерево, человек",
+      "typeQuestion": "file"
+    },
+    {
+      "id": 2,
+      "questionText": "Несуществующее животное",
+      "typeQuestion": "file"
+    },
+    {
+      "id": 3,
+      "questionText": "Автопортрет",
+      "typeQuestion": "file"
+    }
+  ]
+}

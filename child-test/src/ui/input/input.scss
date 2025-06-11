@@ -5,7 +5,8 @@
   align-items: start;
   gap: 5px;
   width: 100%;
-  > input {
+  > input,
+  textarea {
     border: 1px solid var(--grey);
     border-radius: 6px;
     padding: 10px 12px;
@@ -28,7 +29,7 @@
   &_type {
     &_text {
       input {
-        width: 100%;
+        width: -webkit-fill-available;
       }
     }
 
@@ -45,6 +46,12 @@
         &:hover {
           cursor: pointer;
         }
+      }
+    }
+
+    &_textarea {
+      textarea {
+        width: -webkit-fill-available;
       }
     }
   }

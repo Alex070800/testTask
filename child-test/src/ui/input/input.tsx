@@ -75,7 +75,22 @@ export const Input: FC<InputProps> = ({
       );
     }
     case InputType.textarea: {
-      return <input />;
+      return (
+        <div className={inputCN({ type: inputTypeClass })}>
+          {label && (
+            <label className={inputCN("label")} htmlFor={id}>
+              {label}
+            </label>
+          )}
+          <textarea
+            name={id}
+            required={isRequired}
+            disabled={isDisable}
+            value={value}
+            id={id}
+          />
+        </div>
+      );
     }
   }
 };

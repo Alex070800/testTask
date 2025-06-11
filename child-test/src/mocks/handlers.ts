@@ -1,12 +1,22 @@
 import { http, HttpResponse } from "msw";
 
-const postsResolver = ({}) => {
+const getQuestionsResolver = ({}) => {
   let questions = require("./questions.json");
-  console.log(questions);
   return HttpResponse.json(questions);
- 
 };
 
-const getQuestionsHandler = http.get("https://child-test/api/question", postsResolver);
+const getQuestionsImagesResolver = ({}) => {
+  let questions = require("./images-questions.json");
+  return HttpResponse.json(questions);
+};
 
-export const handlers = [getQuestionsHandler];
+const getQuestionsHandler = http.get(
+  "https://child-test/api/question",
+  getQuestionsResolver
+);
+const getQuestionsImagesHandler = http.get(
+  "https://child-test/api/question/images",
+  getQuestionsImagesResolver
+);
+
+export const handlers = [getQuestionsHandler, getQuestionsImagesHandler];
