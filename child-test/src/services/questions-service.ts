@@ -9,17 +9,7 @@ class QuestionsService {
       let result = (await res).data;
       return result as QuestionGetDto;
     } catch (err: any) {
-      // return {};
-    }
-  }
-
-  async getImagesQuestions() {
-    try {
-      let res = API.getQuestionsImages();
-      let result = (await res).data;
-      return result as SectionDto;
-    } catch (err: any) {
-      return null;
+      console.error(err);
     }
   }
 }

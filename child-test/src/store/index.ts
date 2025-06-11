@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { progressReducer } from "./progress-test/reducer";
+import { answerReducer } from "./answers-test/reducer";
+
 
 export const rootReducer = combineReducers({
-  progressReducer,
+  answerReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

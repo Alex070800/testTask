@@ -8,6 +8,11 @@ import { Input, InputType } from "../../ui/input/input";
 import { RadioGroup } from "../../ui/radio-group/radio-group";
 import { AnswerOptionDto } from "../../api/models/dto/answer-option-dto";
 import { SelectItem } from "../../view-models/select-item";
+import { answersService } from "../../services/answers-service";
+import { RootState, typedDispatch } from "../../store";
+import { setAnswersValue } from "../../store/answers-test/action";
+import { useSelector } from "react-redux";
+import { AnswerDto, AnswerFileDto } from "../../api/models/dto/answer-dto";
 
 const sectionCN = bemCN("section");
 
@@ -16,6 +21,9 @@ export type SectionProps = {
 };
 
 export const Section: FC<SectionProps> = ({ section }) => {
+  const answers: AnswerDto[] = useSelector(
+    (state: RootState) => state.answerReducer
+  )?.answers;
   return (
     <div className={sectionCN()}>
       <h2>{section.name}</h2>
@@ -29,6 +37,18 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   key={q.id}
                   name={q.questionText}
                   id={q.id.toString()}
+                  value={
+                    (answers.find(
+                      (a: AnswerDto) => a.idQuestion === q.id
+                    ) as AnswerFileDto)?.file
+                  }
+                  onChange={(v: Blob) =>
+                    typedDispatch(
+                      setAnswersValue([
+                        ...answers.concat(answersService.getNewAnswer(q, v)),
+                      ] as AnswerDto[])
+                    )
+                  }
                 />
               );
             }

@@ -37,6 +37,7 @@
       input {
         color: var(--light-grey-05);
 
+        appearance: textfield;
         -moz-appearance: textfield;
 
         &::-webkit-calendar-picker-indicator {

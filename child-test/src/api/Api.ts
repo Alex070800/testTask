@@ -268,22 +268,6 @@ export class Api<
   SecurityDataType extends unknown
 > extends HttpClient<SecurityDataType> {
   api = {
-/**
-     * @description Получение вопросов теста, связанных с загрузкой файлов 
-     *
-     * @tags Question
-     * @request GET:/api/question/images
-     */
-    getQuestionsImages: (params: RequestParams = {}) =>
-      this.request<SectionDto, void>({
-        path: `/api/question/images`,
-        method: "GET",
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
-
-
     /**
      * @description Получение вопросов теста
      *
