@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import {
   AnswerDto,
   AnswerFileDto,
+  AnswerMultiDto,
   AnswerTextDto,
 } from "../../api/models/dto/answer-dto";
 import { getBase64 } from "../../utils/base64";
@@ -65,6 +66,17 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.date}
+                  value={
+                    (
+                      answers.find(
+                        (a: AnswerDto) => a.idQuestion === q.id
+                      ) as AnswerTextDto
+                    )?.text
+                  }
+                  onChange={(newValue: string) => {
+                    let newItem = new AnswerTextDto(q.id, newValue);
+                    typedDispatch(setAnswerValue(newItem));
+                  }}
                 />
               );
             }
@@ -103,6 +115,17 @@ export const Section: FC<SectionProps> = ({ section }) => {
                         )
                       : []
                   }
+                  activeId={
+                    (
+                      [...answers].find(
+                        (a: AnswerDto) => a.idQuestion === q.id
+                      ) as AnswerMultiDto
+                    )?.idAnswer
+                  }
+                  onChange={(v: number) => {
+                    let newItem = new AnswerMultiDto(q.id, v);
+                    typedDispatch(setAnswerValue(newItem));
+                  }}
                 />
               );
             }
@@ -113,6 +136,17 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.textarea}
+                  value={
+                    (
+                      [...answers].find(
+                        (a: AnswerDto) => a.idQuestion === q.id
+                      ) as AnswerTextDto
+                    )?.text
+                  }
+                  onChange={(v: string) => {
+                    let newItem = new AnswerTextDto(q.id, v);
+                    typedDispatch(setAnswerValue(newItem));
+                  }}
                 />
               );
             }

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, FormEventHandler, useEffect, useState } from "react";
 
 import "./radio-group.scss";
 
@@ -22,12 +22,14 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   onChange,
   label,
 }) => {
-  const [activeIndex, setActiveIndex] = useState(activeId ? activeId : -1);
+  // const [activeIndex, setActiveIndex] = useState(activeId ? activeId : -1);
 
   const onClickItem = (id: number) => {
-    setActiveIndex(id);
+    console.log(id);
     onChange && onChange(id);
   };
+
+  console.log(activeId);
   return (
     <div id={id} className={radioGroupCN()}>
       {label && (
@@ -37,12 +39,17 @@ export const RadioGroup: FC<RadioGroupProps> = ({
       )}
       <div>
         {items.map((item: SelectItem) => (
-          <div
-            key={item.id}
-            className={radioGroupCN("item")}
-            onClick={() => onClickItem(item.id)}
-          >
-            <input name={id} id={item.id.toString()} type="radio" />
+          <div key={item.id} className={radioGroupCN("item")}>
+            <input
+              onInput={(v: React.ChangeEvent<HTMLInputElement>) => {
+                v.currentTarget.checked = true;
+                onClickItem(Number(v.currentTarget.id));
+              }}
+              name={id}
+              id={item.id.toString()}
+              type="radio"
+              // checked={activeId == item.id ? true : false}
+            />
             <label>{item.value}</label>
           </div>
         ))}

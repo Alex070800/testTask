@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEventHandler, FC } from "react";
 import { bemCN } from "../../configs/bem-classname";
 import "./input.scss";
 
@@ -47,6 +47,9 @@ export const Input: FC<InputProps> = ({
             disabled={isDisable}
             value={value}
             type="date"
+            onChange={(v: React.ChangeEvent<HTMLInputElement>) => {
+              onChange && onChange(v.currentTarget.value);
+            }}
           />
         </div>
       );
@@ -86,6 +89,9 @@ export const Input: FC<InputProps> = ({
             disabled={isDisable}
             value={value}
             id={id}
+            onChange={(v: React.ChangeEvent<HTMLTextAreaElement>) => {
+              onChange && onChange(v.currentTarget.value);
+            }}
           />
         </div>
       );
