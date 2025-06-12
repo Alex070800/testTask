@@ -1,18 +1,22 @@
-import { FC, FormEvent, useEffect } from "react";
+import { FC, FormEvent, use, useEffect } from "react";
 import { bemCN } from "../../configs/bem-classname";
 import "./image-input.scss";
-import { blob } from "stream/consumers";
 
 const imageInputCN = bemCN("image-input");
 
 type ImageInputProps = {
   id: string;
   name?: string;
-  value?: Blob;
+  value?: string;
   onChange?: (newValue: Blob) => void;
 };
 
-export const ImageInput: FC<ImageInputProps> = ({ id, name, value, onChange }) => {
+export const ImageInput: FC<ImageInputProps> = ({
+  id,
+  name,
+  value,
+  onChange,
+}) => {
   const onInput = (e: FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.files) {
       // Ограничение размера до 5МБ
@@ -20,16 +24,12 @@ export const ImageInput: FC<ImageInputProps> = ({ id, name, value, onChange }) =
       else {
         let file = e.currentTarget.files[0];
         onChange && onChange(file);
-        let img = document.getElementById(id + "_img") as any;
-        if (img) {
-          img.src = window.URL.createObjectURL(file);
-        }
       }
     }
   };
 
   return (
-    <div className={imageInputCN()}>
+    <div className={imageInputCN({ isValue: value ? true : false })}>
       <input
         required
         onInput={onInput}
@@ -37,11 +37,10 @@ export const ImageInput: FC<ImageInputProps> = ({ id, name, value, onChange }) =
         id={id}
         name={id}
         type="file"
-
       />
 
       <label htmlFor={id}>{name}</label>
-      <img src={value && URL.createObjectURL(value)} id={id + "_img"} />
+      <img src={value && "data:image/jpeg;base64, " + value} id={id + "_img"} />
     </div>
   );
 };

@@ -6,6 +6,12 @@
   gap: 8px;
   position: relative;
 
+  &_isValue {
+    input::file-selector-button {
+      background-image: url("../../shared/images/svg/change.svg") !important;
+    }
+  }
+
   img {
     display: none;
   }
@@ -37,11 +43,12 @@
       cursor: pointer;
     }
 
-    &:valid {
-      &::file-selector-button {
-        background-image: url("../../shared/images/svg/change.svg");
-      }
-    }
+    // &:valid {
+    //   &::file-selector-button {
+    //     background-image: url("../../shared/images/svg/change.svg");
+    //   }
+    // }
+
     &::file-selector-button {
       color: transparent;
       position: absolute;

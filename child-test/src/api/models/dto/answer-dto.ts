@@ -7,11 +7,11 @@ export class AnswerDto {
 }
 
 export class AnswerFileDto extends AnswerDto {
-  file: Blob;
+  fileBase64: string;
 
-  constructor(idQuestion: number, file: Blob) {
+  constructor(idQuestion: number, fileBase64: string) {
     super(idQuestion);
-    this.file = file;
+    this.fileBase64 = fileBase64;
   }
 }
 

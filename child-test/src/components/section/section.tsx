@@ -8,11 +8,15 @@ import { Input, InputType } from "../../ui/input/input";
 import { RadioGroup } from "../../ui/radio-group/radio-group";
 import { AnswerOptionDto } from "../../api/models/dto/answer-option-dto";
 import { SelectItem } from "../../view-models/select-item";
-import { answersService } from "../../services/answers-service";
 import { RootState, typedDispatch } from "../../store";
-import { setAnswersValue } from "../../store/answers-test/action";
+import { setAnswerValue } from "../../store/answers-test/action";
 import { useSelector } from "react-redux";
-import { AnswerDto, AnswerFileDto } from "../../api/models/dto/answer-dto";
+import {
+  AnswerDto,
+  AnswerFileDto,
+  AnswerTextDto,
+} from "../../api/models/dto/answer-dto";
+import { getBase64 } from "../../utils/base64";
 
 const sectionCN = bemCN("section");
 
@@ -24,6 +28,7 @@ export const Section: FC<SectionProps> = ({ section }) => {
   const answers: AnswerDto[] = useSelector(
     (state: RootState) => state.answerReducer
   )?.answers;
+
   return (
     <div className={sectionCN()}>
       <h2>{section.name}</h2>
@@ -38,17 +43,18 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   name={q.questionText}
                   id={q.id.toString()}
                   value={
-                    (answers.find(
-                      (a: AnswerDto) => a.idQuestion === q.id
-                    ) as AnswerFileDto)?.file
+                    (
+                      answers.find(
+                        (a: AnswerDto) => a.idQuestion === q.id
+                      ) as AnswerFileDto
+                    )?.fileBase64
                   }
-                  onChange={(v: Blob) =>
-                    typedDispatch(
-                      setAnswersValue([
-                        ...answers.concat(answersService.getNewAnswer(q, v)),
-                      ] as AnswerDto[])
-                    )
-                  }
+                  onChange={(v: Blob) => {
+                    getBase64(v, (res: string) => {
+                      let newItem = new AnswerFileDto(q.id, res);
+                      typedDispatch(setAnswerValue(newItem));
+                    });
+                  }}
                 />
               );
             }
@@ -69,6 +75,17 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.text}
+                  value={
+                    (
+                      [...answers].find(
+                        (a: AnswerDto) => a.idQuestion === q.id
+                      ) as AnswerTextDto
+                    )?.text
+                  }
+                  onChange={(v: string) => {
+                    let newItem = new AnswerTextDto(q.id, v);
+                    typedDispatch(setAnswerValue(newItem));
+                  }}
                 />
               );
             }

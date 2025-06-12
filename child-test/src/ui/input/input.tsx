@@ -15,7 +15,6 @@ type InputProps = {
   type: InputType;
   value?: string;
   label?: string;
-  setValue?: (v: string) => void;
   isDisable?: boolean;
   isRequired?: boolean;
   onChange?: (newValue: any) => void;
@@ -25,7 +24,6 @@ export const Input: FC<InputProps> = ({
   id,
   type,
   value,
-  setValue,
   label,
   isDisable,
   isRequired,
@@ -64,7 +62,7 @@ export const Input: FC<InputProps> = ({
           <input
             value={value}
             onChange={(v: React.ChangeEvent<HTMLInputElement>) => {
-              setValue && setValue(v.currentTarget.value);
+              onChange && onChange(v.currentTarget.value);
             }}
             id={id}
             name={id}

@@ -21,12 +21,9 @@ import { Section } from "../../components/section/section";
 import { BackgroundDots } from "../../ui/background-dots/background-dots";
 import { useNavigate } from "react-router-dom";
 import { links } from "../../configs/links";
-import { AnswerPostDto } from "../../api/models/reques-dto/answer-post-dto";
 import { useSelector } from "react-redux";
 import { RootState, typedDispatch } from "../../store";
-import { setAnswersValue } from "../../store/answers-test/action";
-import { answersService } from "../../services/answers-service";
-import { QuestionDto } from "../../api/models/dto/question-dto";
+
 import { AnswerDto } from "../../api/models/dto/answer-dto";
 const testPageCN = bemCN("test-page");
 
@@ -34,9 +31,9 @@ export const TestPage = () => {
   const [progress, setProgress] = useState(0);
   const [totalProgress, setTotalProgress] = useState(1);
   const [sections, setSections] = useState<SectionDto[]>();
-  const answers: AnswerDto[] = useSelector(
-    (state: RootState) => state.answerReducer
-  )?.answers;
+  // const answers: AnswerDto[] = useSelector(
+  //   (state: RootState) => state.answerReducer
+  // )?.answers;
 
   const navigate = useNavigate();
 
@@ -44,18 +41,15 @@ export const TestPage = () => {
   useEffect(() => {
     questionsService.getQuestions().then((res: QuestionGetDto | undefined) => {
       if (res) {
-       
         setSections(res.sections);
         setTotalProgress(res.sections.length);
-
-       
       }
     });
   }, []);
 
-  useEffect(() =>{
-console.log(answers);
-  }, [answers])
+  // useEffect(() => {
+  //   console.log(answers);
+  // }, [answers]);
 
   //Переход к следующей секции
   const nextSection = () => {
