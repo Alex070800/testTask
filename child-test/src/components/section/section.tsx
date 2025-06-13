@@ -11,12 +11,7 @@ import { SelectItem } from "../../view-models/select-item";
 import { RootState, typedDispatch } from "../../store";
 import { setAnswerValue } from "../../store/answers-test/action";
 import { useSelector } from "react-redux";
-import {
-  AnswerDto,
-  AnswerFileDto,
-  AnswerMultiDto,
-  AnswerTextDto,
-} from "../../api/models/dto/answer-dto";
+import { AnswerDto } from "../../api/models/dto/answer-dto";
 import { getBase64 } from "../../utils/base64";
 
 const sectionCN = bemCN("section");
@@ -43,16 +38,14 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   key={q.id}
                   name={q.questionText}
                   id={q.id.toString()}
-                  value={
-                    (
-                      answers.find(
-                        (a: AnswerDto) => a.idQuestion === q.id
-                      ) as AnswerFileDto
-                    )?.fileBase64
-                  }
+                  value={(
+                    answers.find(
+                      (a: AnswerDto) => a.idQuestion === q.id
+                    ) as AnswerDto
+                  )?.value.toString()}
                   onChange={(v: Blob) => {
                     getBase64(v, (res: string) => {
-                      let newItem = new AnswerFileDto(q.id, res);
+                      let newItem = new AnswerDto(q.id, res);
                       typedDispatch(setAnswerValue(newItem));
                     });
                   }}
@@ -66,15 +59,13 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.date}
-                  value={
-                    (
-                      answers.find(
-                        (a: AnswerDto) => a.idQuestion === q.id
-                      ) as AnswerTextDto
-                    )?.text
-                  }
+                  value={(
+                    answers.find(
+                      (a: AnswerDto) => a.idQuestion === q.id
+                    ) as AnswerDto
+                  )?.value.toString()}
                   onChange={(newValue: string) => {
-                    let newItem = new AnswerTextDto(q.id, newValue);
+                    let newItem = new AnswerDto(q.id, newValue);
                     typedDispatch(setAnswerValue(newItem));
                   }}
                 />
@@ -87,15 +78,13 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.text}
-                  value={
-                    (
-                      [...answers].find(
-                        (a: AnswerDto) => a.idQuestion === q.id
-                      ) as AnswerTextDto
-                    )?.text
-                  }
+                  value={(
+                    [...answers].find(
+                      (a: AnswerDto) => a.idQuestion === q.id
+                    ) as AnswerDto
+                  )?.value.toString()}
                   onChange={(v: string) => {
-                    let newItem = new AnswerTextDto(q.id, v);
+                    let newItem = new AnswerDto(q.id, v);
                     typedDispatch(setAnswerValue(newItem));
                   }}
                 />
@@ -119,11 +108,11 @@ export const Section: FC<SectionProps> = ({ section }) => {
                     (
                       [...answers].find(
                         (a: AnswerDto) => a.idQuestion === q.id
-                      ) as AnswerMultiDto
-                    )?.idAnswer
+                      ) as AnswerDto
+                    )?.value as number
                   }
                   onChange={(v: number) => {
-                    let newItem = new AnswerMultiDto(q.id, v);
+                    let newItem = new AnswerDto(q.id, v);
                     typedDispatch(setAnswerValue(newItem));
                   }}
                 />
@@ -136,15 +125,13 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   label={q.questionText}
                   id={q.id.toString()}
                   type={InputType.textarea}
-                  value={
-                    (
-                      [...answers].find(
-                        (a: AnswerDto) => a.idQuestion === q.id
-                      ) as AnswerTextDto
-                    )?.text
-                  }
+                  value={(
+                    [...answers].find(
+                      (a: AnswerDto) => a.idQuestion === q.id
+                    ) as AnswerDto
+                  )?.value.toString()}
                   onChange={(v: string) => {
-                    let newItem = new AnswerTextDto(q.id, v);
+                    let newItem = new AnswerDto(q.id, v);
                     typedDispatch(setAnswerValue(newItem));
                   }}
                 />

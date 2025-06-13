@@ -1,4 +1,4 @@
-import { FC, FormEventHandler, useEffect, useState } from "react";
+import { FC, FormEventHandler, useEffect, useRef, useState } from "react";
 
 import "./radio-group.scss";
 
@@ -24,14 +24,25 @@ export const RadioGroup: FC<RadioGroupProps> = ({
 }) => {
   // const [activeIndex, setActiveIndex] = useState(activeId ? activeId : -1);
 
+  const radioGroup = useRef<HTMLDivElement>({} as HTMLDivElement);
   const onClickItem = (id: number) => {
     console.log(id);
     onChange && onChange(id);
   };
 
-  console.log(activeId);
+  useEffect(() => {
+    if (activeId && radioGroup) {
+      let inputs = Array.from(radioGroup.current.getElementsByTagName("input"));
+
+      let activeInput = inputs.find((input:HTMLInputElement) => input.id===activeId.toString());
+      if (activeInput) {
+        (activeInput as HTMLInputElement).checked = true;
+      }
+    }
+  }, [activeId]);
+
   return (
-    <div id={id} className={radioGroupCN()}>
+    <div ref={radioGroup} id={id} className={radioGroupCN()}>
       {label && (
         <label className={radioGroupCN("label")} htmlFor={id}>
           {label}
@@ -42,13 +53,11 @@ export const RadioGroup: FC<RadioGroupProps> = ({
           <div key={item.id} className={radioGroupCN("item")}>
             <input
               onInput={(v: React.ChangeEvent<HTMLInputElement>) => {
-                v.currentTarget.checked = true;
                 onClickItem(Number(v.currentTarget.id));
               }}
               name={id}
               id={item.id.toString()}
               type="radio"
-              // checked={activeId == item.id ? true : false}
             />
             <label>{item.value}</label>
           </div>

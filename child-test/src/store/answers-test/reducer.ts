@@ -1,14 +1,10 @@
 import { Action } from "@reduxjs/toolkit";
-import {
-  AnswerDto,
-  AnswerFileDto,
-  AnswerTextDto,
-} from "../../api/models/dto/answer-dto";
+import { AnswerDto } from "../../api/models/dto/answer-dto";
 import { QuestionDto } from "../../api/models/dto/question-dto";
 import { setAnswerValue } from "./action";
 
 const defaultState = {
-  answers: [] as AnswerDto[] | AnswerFileDto[] | AnswerTextDto[],
+  answers: [] as AnswerDto[],
 };
 export const answerReducer = (_state = defaultState, _action: any) => {
   switch (_action.type) {
