@@ -41,7 +41,7 @@
         -moz-appearance: textfield;
 
         &::-webkit-calendar-picker-indicator {
-          opacity: 0;
+          opacity: .6;
         }
 
         &:hover {
@@ -53,6 +53,7 @@
     &_textarea {
       textarea {
         width: -webkit-fill-available;
+        resize: vertical;
       }
     }
   }

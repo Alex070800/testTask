@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SectionDto } from "../../api/models/dto/section-dto";
 import { bemCN } from "../../configs/bem-classname";
 import "./section.scss";
@@ -45,7 +45,7 @@ export const Section: FC<SectionProps> = ({ section }) => {
                   )?.value.toString()}
                   onChange={(v: Blob) => {
                     getBase64(v, (res: string) => {
-                      let newItem = new AnswerDto(q.id, res);
+                       let newItem = new AnswerDto(q.id, res);
                       typedDispatch(setAnswerValue(newItem));
                     });
                   }}

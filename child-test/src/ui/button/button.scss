@@ -32,6 +32,16 @@
       > svg > * {
         stroke: var(--white);
       }
+
+      &:disabled {
+        background-color: var(--light-grey-01);
+        > span {
+          color: var(--light-grey-05);
+        }
+        > svg > * {
+          stroke: var(--light-grey-05);
+        }
+      }
     }
 
     &_lightBlue {

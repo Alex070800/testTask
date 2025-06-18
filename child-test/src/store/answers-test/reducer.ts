@@ -1,6 +1,4 @@
-import { Action } from "@reduxjs/toolkit";
 import { AnswerDto } from "../../api/models/dto/answer-dto";
-import { QuestionDto } from "../../api/models/dto/question-dto";
 import { setAnswerValue } from "./action";
 
 const defaultState = {

@@ -63,7 +63,7 @@ export const Input: FC<InputProps> = ({
             </label>
           )}
           <input
-            value={value}
+            value={value || ""}
             onChange={(v: React.ChangeEvent<HTMLInputElement>) => {
               onChange && onChange(v.currentTarget.value);
             }}
@@ -87,7 +87,7 @@ export const Input: FC<InputProps> = ({
             name={id}
             required={isRequired}
             disabled={isDisable}
-            value={value}
+            value={value || ""}
             id={id}
             onChange={(v: React.ChangeEvent<HTMLTextAreaElement>) => {
               onChange && onChange(v.currentTarget.value);

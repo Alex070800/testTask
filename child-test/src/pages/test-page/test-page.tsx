@@ -25,15 +25,18 @@ import { useSelector } from "react-redux";
 import { RootState, typedDispatch } from "../../store";
 
 import { AnswerDto } from "../../api/models/dto/answer-dto";
+import { QuestionDto } from "../../api/models/dto/question-dto";
 const testPageCN = bemCN("test-page");
 
 export const TestPage = () => {
   const [progress, setProgress] = useState(0);
   const [totalProgress, setTotalProgress] = useState(1);
   const [sections, setSections] = useState<SectionDto[]>();
-  // const answers: AnswerDto[] = useSelector(
-  //   (state: RootState) => state.answerReducer
-  // )?.answers;
+
+  const [isDisableNextBtn, setIsDisableNextBtn] = useState<boolean>(true);
+  const answers: AnswerDto[] = useSelector(
+    (state: RootState) => state.answerReducer
+  )?.answers;
 
   const navigate = useNavigate();
 
@@ -47,12 +50,9 @@ export const TestPage = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   console.log(answers);
-  // }, [answers]);
-
   //Переход к следующей секции
   const nextSection = () => {
+    setIsDisableNextBtn(true);
     if (progress == totalProgress - 1) {
       navigate(links.result);
     } else {
@@ -65,6 +65,18 @@ export const TestPage = () => {
     setProgress(progress - 1);
   };
 
+  useEffect(() => {
+    if (sections) {
+      let idsQuestions = sections[progress].questions.map(
+        (q: QuestionDto) => q.id
+      );
+      let idsAnswers = answers.map((answ: AnswerDto) => answ.idQuestion);
+      if (idsQuestions.every((ai) => idsAnswers.includes(ai))) {
+        setIsDisableNextBtn(false);
+      }
+    }
+  }, [answers, progress]);
+
   if (sections) {
     return (
       <div className={testPageCN()}>
@@ -73,7 +85,10 @@ export const TestPage = () => {
           totalStep={totalProgress}
           currentStep={progress + 1}
         />
-        <Section section={sections[progress]} />
+        <Section
+         
+          section={sections[progress]}
+        />
         <div className={testPageCN("next")}>
           <ProgressBar
             type={TypeProgressBar.number}
@@ -92,6 +107,7 @@ export const TestPage = () => {
               />
             )}
             <Button
+              isDisable={isDisableNextBtn}
               onClick={nextSection}
               color={ButtonColors.blue}
               size={ButtonSizes.big}

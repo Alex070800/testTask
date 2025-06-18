@@ -1,4 +1,5 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, nanoid } from "@reduxjs/toolkit";
 import { AnswerDto } from "../../api/models/dto/answer-dto";
 
-export const setAnswerValue = createAction<AnswerDto>("SET_ANSWER_VALUE");
+export const setAnswerValue = createAction<{}>("SET_ANSWER_VALUE");
+
