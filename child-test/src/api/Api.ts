@@ -1,5 +1,6 @@
-import { SectionDto } from "./models/dto/section-dto";
-import { AnswerPostDto } from "./models/reques-dto/answer-post-dto";
+import { AnswerPostRequestDto } from "./models/reques-dto/answer-post-dto";
+import { FileGetDto } from "./models/reques-dto/file-get-dto";
+import { AnswerPostResponseDto } from "./models/response-dto/answers-post-dto";
 import { QuestionGetDto } from "./models/response-dto/question-get-dto";
 
 export type QueryParamsType = Record<string | number, any>;
@@ -289,13 +290,28 @@ export class Api<
      * @tags Answer
      * @request POST:/api/answer
      */
-    postAnswers: (data: AnswerPostDto, params: RequestParams = {}) =>
-      this.request<AnswerPostDto, void>({
-        path: `/api/api/answer`,
+    postAnswers: (data: AnswerPostRequestDto, params: RequestParams = {}) =>
+      this.request<AnswerPostResponseDto, void>({
+        path: `/api/answer`,
         method: "POST",
         body: data,
         type: ContentType.Json,
         format: "json",
+        ...params,
+      }),
+
+    /**
+     * @description Получение файла с результатами по id
+     *
+     * @tags File
+     * @request GET:/api/file
+     */
+    getFile: (data: FileGetDto, params: RequestParams = {}) =>
+      this.request<void, void>({
+        path: `/api/file`,
+        method: "GET",
+        // type: ContentType.FormData,
+        // format: "blob",
         ...params,
       }),
   };

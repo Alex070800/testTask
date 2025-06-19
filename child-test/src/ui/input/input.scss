@@ -15,7 +15,8 @@
 
     &:focus,
     &:hover,
-    &:not([value=""]) {
+    // &:not([value=""]),
+    &:not(:empty) {
       border: 1px solid var(--violet);
       outline: none;
     }

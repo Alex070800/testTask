@@ -45,7 +45,7 @@ export const Input: FC<InputProps> = ({
             name={id}
             required={isRequired}
             disabled={isDisable}
-            value={value}
+            value={value || "01.01.2000"}
             type="date"
             onChange={(v: React.ChangeEvent<HTMLInputElement>) => {
               onChange && onChange(v.currentTarget.value);

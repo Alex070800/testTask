@@ -1,12 +1,15 @@
-import { AnswerPostDto } from "../api/models/reques-dto/answer-post-dto";
+import { AnswerPostRequestDto } from "../api/models/reques-dto/answer-post-dto";
 import { API } from "../configs/api";
 
 class AnswersService {
-  async sendAnswers(answers: AnswerPostDto) {
+  async sendAnswers(answers: AnswerPostRequestDto) {
     try {
-      API.postAnswers(answers);
+      let res = API.postAnswers(answers);
+      let result = (await res).data;
+      return result.id;
     } catch (err: any) {
       console.error(err);
+      return "";
     }
   }
 }

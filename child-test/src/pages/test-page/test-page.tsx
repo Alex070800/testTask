@@ -26,6 +26,8 @@ import { RootState, typedDispatch } from "../../store";
 
 import { AnswerDto } from "../../api/models/dto/answer-dto";
 import { QuestionDto } from "../../api/models/dto/question-dto";
+import { answersService } from "../../services/answers-service";
+import { AnswerPostRequestDto } from "../../api/models/reques-dto/answer-post-dto";
 const testPageCN = bemCN("test-page");
 
 export const TestPage = () => {
@@ -71,8 +73,13 @@ export const TestPage = () => {
         (q: QuestionDto) => q.id
       );
       let idsAnswers = answers.map((answ: AnswerDto) => answ.idQuestion);
+
+      console.log(idsAnswers);
+      console.log(idsQuestions);
       if (idsQuestions.every((ai) => idsAnswers.includes(ai))) {
         setIsDisableNextBtn(false);
+      } else {
+        setIsDisableNextBtn(true);
       }
     }
   }, [answers, progress]);
@@ -85,10 +92,7 @@ export const TestPage = () => {
           totalStep={totalProgress}
           currentStep={progress + 1}
         />
-        <Section
-         
-          section={sections[progress]}
-        />
+        <Section section={sections[progress]} />
         <div className={testPageCN("next")}>
           <ProgressBar
             type={TypeProgressBar.number}

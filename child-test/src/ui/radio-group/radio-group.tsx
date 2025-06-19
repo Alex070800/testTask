@@ -22,11 +22,9 @@ export const RadioGroup: FC<RadioGroupProps> = ({
   onChange,
   label,
 }) => {
-  // const [activeIndex, setActiveIndex] = useState(activeId ? activeId : -1);
 
   const radioGroup = useRef<HTMLDivElement>({} as HTMLDivElement);
   const onClickItem = (id: number) => {
-    console.log(id);
     onChange && onChange(id);
   };
 

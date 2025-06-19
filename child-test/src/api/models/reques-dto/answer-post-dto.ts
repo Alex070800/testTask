@@ -1,6 +1,6 @@
 import { AnswerDto } from "../dto/answer-dto";
 
-export class AnswerPostDto {
+export class AnswerPostRequestDto {
   answers: AnswerDto[];
 
   constructor(answers: AnswerDto[]) {
